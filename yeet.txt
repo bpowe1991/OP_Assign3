@@ -1,0 +1,1356 @@
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 50916 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 50982 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51157 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51161 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51162 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51162 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51163 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51170 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51165 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51157 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51166 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51170 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51167 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51171 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51166 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51166 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51166 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51169 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51233 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51234 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51236 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51237 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51235 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51238 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51239 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51240 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51241 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51242 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51244 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51243 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51246 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51247 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51245 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51248 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51299 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51300 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51297 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51298 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51302 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51301 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51304 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51303 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51305 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51306 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51310 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51311 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51308 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51307 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51309 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51312 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51383 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51387 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51384 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51386 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51388 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51385 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51389 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51390 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51391 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51392 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51393 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51394 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51396 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51398 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51395 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51397 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51455 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51454 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51456 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51457 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51458 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51460 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51461 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51459 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51462 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51463 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51464 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51466 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51467 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51465 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51468 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51469 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51552 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51553 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51557 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51556 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51555 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51554 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51558 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51559 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51560 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51561 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51562 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51563 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51565 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51566 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51564 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51567 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51645 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51644 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51646 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51647 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51649 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51650 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51648 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51651 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51652 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51653 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51655 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51654 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51656 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51659 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51657 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51658 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51720 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51719 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51721 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51717 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51718 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51723 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51724 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51722 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51725 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51726 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51728 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51727 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51729 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51730 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51731 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+Clock: 1000.0 
+Message: 51732 : The time is 1000.0
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt
+s:50
+m:10
+t:2
+file:yeet.txt

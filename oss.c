@@ -21,7 +21,7 @@ values in shared memory and deallocates the shared memory segment.
 #include <sys/ipc.h> 
 #include <sys/shm.h> 
 #include <signal.h>
-#include <assert.h>
+#include <semaphore.h>
 
 //Structure to be used in shared memory.
 struct clock {
@@ -48,6 +48,8 @@ int main(int argc, char *argv[]){
     int opt, m = 4, s = 5, t = 2, shmid, status = 0, count = 0, running = 0;
     key_t key = 3670400;
 	pid_t childpid = 0, wpid;
+    FILE *logPtr;
+    sem_t *mutex;
 
     //Parsing options.
     while((opt = getopt(argc, argv, "m:s:t:l:hp")) != -1){
@@ -149,6 +151,14 @@ int main(int argc, char *argv[]){
 		}
 	}
 
+   //Creating or opening log file.
+   if((logPtr = fopen(filename,"a")) == NULL)
+   {
+      fprintf(stderr, "%s: Error: Failed to open/create log file\n",
+					    argv[0]);
+      exit(-1);             
+   }
+
     //Checking if m, s, and t have valid integer values.
     if (m <= 0 || s <= 0 || t <= 0){
         perror(strcat(argv[0], ": Error: Illegal parameter for -n, -s, or -t"));
@@ -169,49 +179,69 @@ int main(int argc, char *argv[]){
         exit(-1);
     }
 
+    if ((mutex = sem_open ("ossSem", O_CREAT | O_EXCL, 0644, 1)) == NULL){
+        perror(strcat(argv[0],": Error: Failed semaphore creation"));
+        exit(-1);    
+    } 
 
-    fprintf(stderr, "s:%d\nm:%d\nt:%d\nfile:%s\n", s,m,t,filename);
     int x;
 
     for (x=0;x< 1000;x++){
         clockptr->sec += 1;
     }
 
-    sprintf(clockptr->shmMsg, "%ld : The time is %d.%d", (long)getpid(), clockptr->sec, clockptr->millisec);
+    /* fork child processes */
+    for (x = 0; x < 3; x++){
+        childpid = fork ();
+        if (childpid < 0) {
+        /* check for error      */
+            sem_unlink ("ossSem");   
+            sem_close(mutex);  
+            /* unlink prevents the semaphore existing forever */
+            /* if a crash occurs during the execution         */
+            printf ("Fork error.\n");
+        }
+        else if (childpid == 0)
+            break;                  /* child processes */
+    }
 
-    fprintf(stderr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
-    // //Loop to fork children
-    // while (count < s && flag == 0 && count < 100){
-    //     if (running == m) {
-    //         wait(NULL);
-    //         running--;
-    //     }
-        
-    //     //Forking child.
-    //     if ((childpid = fork()) < 0) {
-    //         perror(strcat(argv[0],": Error: Failed to create child"));
-    //     }
-    //     else if (childpid == 0) {
-    //         char *args[]={"./Worker", NULL};
-    //         if ((execvp(args[0], args)) == -1) {
-    //             perror(strcat(argv[0],": Error: Failed to execvp child program\n"));
-    //             exit(-1);
-    //         }
-    //     }
-        
-    //     count++;
-    //     running++;
-    // }
+
+//Parent
+    if (childpid != 0){
+        /* wait for all children to exit */
+        while ((wpid = wait(&status)) > 0);
+
+        fprintf (stderr, "\nParent: All children have exited.\n");
+
+        /* shared memory detach */
+        shmdt (clockptr);
+        shmctl (shmid, IPC_RMID, 0);
+
+        /* cleanup semaphores */
+        sem_unlink ("ossSem");   
+        sem_close(mutex);  
+        /* unlink prevents the semaphore existing forever */
+        /* if a crash occurs during the execution         */
+        fclose(logPtr);
+        exit (0);
+    }
+
+ //Child
+    else{
+        sem_wait (mutex);           /* P operation */
+        fprintf(stderr,"  Child(%d) is in critical section.\n", x);
+        sprintf(clockptr->shmMsg, "%ld : The time is %d.%d", (long)getpid(), clockptr->sec, clockptr->millisec);
+        fprintf(stderr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
+        fprintf(logPtr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
+        fprintf(stderr, "Leaving critical!\n");
+        sleep (1);
+        sem_post (mutex);           /* V operation */
+        sem_unlink("ossSem");
+        exit (0);
+    }
     
-    // //Sending signal to all children
-    // if (flag == 1) {
-    //     if (kill(-parent, SIGQUIT) == -1) {
-    //         perror(strcat(argv[0],": Error: Failed kill"));
-    //         exit(-1);
-    //     }
-    // }
-
     //while ((wpid = wait(&status)) > 0);
+    //fprintf(stderr, "All children waited for! \n");
 
     //Detaching from memory segment.
     if (shmdt(clockptr) == -1) {
@@ -226,9 +256,12 @@ int main(int argc, char *argv[]){
         exit(-1);
     }
     
-    return 0;         
-}
+    sem_unlink ("ossSem");   
+    sem_close(mutex);
+    fclose(logPtr);
 
+    return 0;     
+}
 //Function to check whether string is a positive integer
 int is_pos_int(char test_string[]){
 	int is_num = 0;
