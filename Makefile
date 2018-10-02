@@ -1,6 +1,6 @@
 default: oss
 
-oss.o: oss.c.c
+oss.o: oss.c
 	gcc -c oss.c -o oss.o
 
 oss: oss.o

@@ -50,20 +50,20 @@ int main(int argc, char *argv[]){
 	pid_t childpid = 0, wpid;
 
     //Parsing options.
-    while((opt = getopt(argc, argv, "m:s:t:hp")) != -1){
+    while((opt = getopt(argc, argv, "m:s:t:l:hp")) != -1){
 		switch(opt){
 			
             //Option to enter number of processes.
             case 'm':
 				if(is_pos_int(optarg) == 1){
-					fprintf(stderr, "%s: Error: Entered illegal input for option -n\n",
+					fprintf(stderr, "%s: Error: Entered illegal input for option -m\n",
 							argv[0]);
 					exit(-1);
 				}
 				else{
                     m = atoi(optarg);
                     if (m <= 0) {
-                        fprintf(stderr, "%s: Error: Entered illegal input for option -n\n",
+                        fprintf(stderr, "%s: Error: Entered illegal input for option -m\n",
 							argv[0]);
                         exit(-1);
                     }
@@ -80,8 +80,7 @@ int main(int argc, char *argv[]){
 				else{
                     s = atoi(optarg);
                     if (s <= 0) {
-                        fprintf(stderr, "%s: Error: Entered illegal input for option -s:"\
-                                        " Cannot exceed 20\n", argv[0]);
+                        fprintf(stderr, "%s: Error: Entered illegal input for option -s\n", argv[0]);
                         exit(-1);
                     }
 				}
@@ -90,15 +89,14 @@ int main(int argc, char *argv[]){
             //Option to enter t.
             case 't':
 				if(is_pos_int(optarg) == 1){
-					fprintf(stderr, "%s: Error: Entered illegal input for option -s\n",
+					fprintf(stderr, "%s: Error: Entered illegal input for option -t\n",
 							argv[0]);
 					exit(-1);
 				}
 				else {
                     t = atoi(optarg);
                     if (t <= 0) {
-                        fprintf(stderr, "%s: Error: Entered illegal input for option -s:"\
-                                        " Cannot exceed 20\n", argv[0]);
+                        fprintf(stderr, "%s: Error: Entered illegal input for option -t", argv[0]);
                         exit(-1);
                     }
 				}
@@ -107,8 +105,8 @@ int main(int argc, char *argv[]){
             //Option to enter l.
             case 'l':
 				sprintf(filename, "%s", optarg);
-                if (filename == ""){
-                    fprintf(stderr, "%s: Error: Entered illegal input for option -l,:"\
+                if (strcmp(filename, "") == 0){
+                    fprintf(stderr, "%s: Error: Entered illegal input for option -l:"\
                                         " invalid filename\n", argv[0]);
                     exit(-1);
                 }
@@ -172,16 +170,16 @@ int main(int argc, char *argv[]){
     }
 
 
-    fprintf(stderr, "s:%d\nm:%d\nt:%d\nfile:%s", s,m,t,filename);
+    fprintf(stderr, "s:%d\nm:%d\nt:%d\nfile:%s\n", s,m,t,filename);
     int x;
 
     for (x=0;x< 1000;x++){
         clockptr->sec += 1;
     }
 
-    *clockptr->shmMsg = filename;
+    sprintf(clockptr->shmMsg, "%ld : The time is %d.%d", (long)getpid(), clockptr->sec, clockptr->millisec);
 
-    fprintf(stderr, "Clock: %d.%d \nMessage: %s", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
+    fprintf(stderr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
     // //Loop to fork children
     // while (count < s && flag == 0 && count < 100){
     //     if (running == m) {
@@ -214,7 +212,6 @@ int main(int argc, char *argv[]){
     // }
 
     //while ((wpid = wait(&status)) > 0);
-    fprintf(stderr, "\n%d sec, %d ms\n", clockptr->sec, clockptr->millisec);
 
     //Detaching from memory segment.
     if (shmdt(clockptr) == -1) {
