@@ -149,7 +149,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 
-    //Checking if n and s have valid integer values.
+    //Checking if m, s, and t have valid integer values.
     if (m <= 0 || s <= 0 || t <= 0){
         perror(strcat(argv[0], ": Error: Illegal parameter for -n, -s, or -t"));
         exit(-1);
