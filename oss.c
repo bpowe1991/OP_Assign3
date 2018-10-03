@@ -179,7 +179,8 @@ int main(int argc, char *argv[]){
         exit(-1);
     }
 
-    if ((mutex = sem_open ("ossSem", O_CREAT | O_EXCL, 0644, 1)) == NULL){
+    //Creating or opening semaphore
+    if ((mutex = sem_open ("ossSem", O_CREAT, 0644, 1)) == NULL){
         perror(strcat(argv[0],": Error: Failed semaphore creation"));
         exit(-1);    
     } 
@@ -195,8 +196,8 @@ int main(int argc, char *argv[]){
         childpid = fork ();
         if (childpid < 0) {
         /* check for error      */
-            sem_unlink ("ossSem");   
             sem_close(mutex);  
+            sem_unlink ("ossSem");   
             /* unlink prevents the semaphore existing forever */
             /* if a crash occurs during the execution         */
             printf ("Fork error.\n");
@@ -210,8 +211,8 @@ int main(int argc, char *argv[]){
     if (childpid != 0){
         while (running < 3){
             sem_wait(mutex);
-            fprintf(stderr, "Parent in critical section!\n");
             if ((strcmp(clockptr->shmMsg, "")) != 0){
+                fprintf(stderr, "Parent grabbing message!\n");
                 fprintf(logPtr, "%s\n", clockptr->shmMsg);
                 sprintf(clockptr->shmMsg, "");
                 running++;   
@@ -228,9 +229,9 @@ int main(int argc, char *argv[]){
         shmdt (clockptr);
         shmctl (shmid, IPC_RMID, 0);
 
-        /* cleanup semaphores */
+        /* cleanup semaphores */  
+        sem_close(mutex);
         sem_unlink ("ossSem");   
-        sem_close(mutex);  
         /* unlink prevents the semaphore existing forever */
         /* if a crash occurs during the execution         */
         fclose(logPtr);

@@ -51,6 +51,11 @@ int main(int argc, char *argv[]){
         perror(strcat(argv[0],": Error: Failed shmat attach"));
         exit(-1);
     }
+
+    if ((mutex = sem_open ("ossSem", O_CREAT, 0644, 1)) == NULL){
+        perror(strcat(argv[0],": Error: Failed semaphore creation"));
+        exit(-1);    
+    } 
     
     do {
         sem_wait (mutex);           /* P operation */
@@ -66,7 +71,7 @@ int main(int argc, char *argv[]){
     } while(1);
 
     //Unlinking from semaphore.
-    sem_unlink("ossSem");
+    sem_close(mutex);
 
     //Detaching from memory segment.
     if (shmdt(clockptr) == -1) {
