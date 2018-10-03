@@ -46,33 +46,16 @@ int main(int argc, char *argv[]){
     
     struct clock *clockptr;
     char filename[20] = "log.txt";
-    int opt, m = 4, s = 5, t = 2, shmid, status = 0, count = 0, running = 0;
+    int opt, s = 5, t = 2, shmid, status = 0, count = 0, childCount = 0;
     key_t key = 3670400;
 	pid_t childpid = 0, wpid;
     FILE *logPtr;
     sem_t *mutex;
 
     //Parsing options.
-    while((opt = getopt(argc, argv, "m:s:t:l:hp")) != -1){
+    while((opt = getopt(argc, argv, "s:t:l:hp")) != -1){
 		switch(opt){
-			
-            //Option to enter number of processes.
-            case 'm':
-				if(is_pos_int(optarg) == 1){
-					fprintf(stderr, "%s: Error: Entered illegal input for option -m\n",
-							argv[0]);
-					exit(-1);
-				}
-				else{
-                    m = atoi(optarg);
-                    if (m <= 0) {
-                        fprintf(stderr, "%s: Error: Entered illegal input for option -m\n",
-							argv[0]);
-                        exit(-1);
-                    }
-				}
-				break;
-            
+
             //Option to enter s.
             case 's':
 				if(is_pos_int(optarg) == 1){
@@ -118,10 +101,8 @@ int main(int argc, char *argv[]){
             //Help option.
             case 'h':
                 fprintf(stderr, "\nThis program creates s number of child processes with the\n"\
-                                "-s option. The maximum number of child processes allowed to \n"\
-                                "run concurrently is designated with the -m option. The parent\n"\
-                                "increments a timer in shared memory and the children terminate\n"\
-                                "based on the timer.\n"\
+                                "-s option. The parent increments a timer in shared memory and\n"\
+                                " the children terminate based on the timer.\n"\
                                 "OPTIONS:\n\n"\
                                 "-s Set the number of process to be entered. "\
                                 "(i.e. \"executible name\" -n 4 creates 4 children processes).\n"\
@@ -152,6 +133,12 @@ int main(int argc, char *argv[]){
 		}
 	}
 
+    //Checking if m, s, and t have valid integer values.
+    if (s <= 0 || t <= 0){
+        perror(strcat(argv[0], ": Error: Illegal parameter for -n, -s, or -t"));
+        exit(-1);
+    }
+   
    //Creating or opening log file.
    if((logPtr = fopen(filename,"a")) == NULL)
    {
@@ -159,12 +146,6 @@ int main(int argc, char *argv[]){
 					    argv[0]);
       exit(-1);             
    }
-
-    //Checking if m, s, and t have valid integer values.
-    if (m <= 0 || s <= 0 || t <= 0){
-        perror(strcat(argv[0], ": Error: Illegal parameter for -n, -s, or -t"));
-        exit(-1);
-    }
 
     //alarm(t);
     
@@ -186,10 +167,8 @@ int main(int argc, char *argv[]){
         exit(-1);    
     } 
 
-    int x;
-
     //fork child processes
-    for (x = 0; x < 3; x++){
+    for (childCount = 0; childCount < s; childCount++){
         childpid = fork ();
         if (childpid < 0) {
             sem_close(mutex);  
@@ -203,7 +182,7 @@ int main(int argc, char *argv[]){
 
     //Parent
     if (childpid != 0){
-        while (running < 3){
+        while (childCount < 100){
             sem_wait(mutex);
             clockptr->nanoSec += 1000;
             
@@ -217,7 +196,7 @@ int main(int argc, char *argv[]){
                         clockptr->shmMsg, clockptr->sec, clockptr->nanoSec);
                 sprintf(clockptr->shmMsg, "");
                 clockptr->child = 0;
-                running++;
+                childCount++;
                 wait(&clockptr->child);   
             }
             sem_post(mutex);
@@ -227,8 +206,18 @@ int main(int argc, char *argv[]){
 
         fprintf (stderr, "\nParent: All children have exited.\n");
 
-        shmdt (clockptr);
-        shmctl (shmid, IPC_RMID, 0);
+        //Detaching from memory segment.
+        if (shmdt(clockptr) == -1) {
+            perror(strcat(argv[0],": Error: Failed shmdt detach"));
+            clockptr = NULL;
+            exit(-1);
+        }
+
+        //Removing memory segment.
+        if (shmctl(shmid, IPC_RMID, 0) == -1) {
+            perror(strcat(argv[0],": Error: Failed shmctl delete"));
+            exit(-1);
+        }
 
         
         sem_close(mutex);
