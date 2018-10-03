@@ -206,8 +206,19 @@ int main(int argc, char *argv[]){
     }
 
 
-//Parent
+    //Parent
     if (childpid != 0){
+        while (running < 3){
+            sem_wait(mutex);
+            fprintf(stderr, "Parent in critical section!\n");
+            if ((strcmp(clockptr->shmMsg, "")) != 0){
+                fprintf(logPtr, "%s\n", clockptr->shmMsg);
+                sprintf(clockptr->shmMsg, "");
+                running++;   
+            }
+            sem_post(mutex);
+        }
+
         /* wait for all children to exit */
         while ((wpid = wait(&status)) > 0);
 
@@ -223,26 +234,18 @@ int main(int argc, char *argv[]){
         /* unlink prevents the semaphore existing forever */
         /* if a crash occurs during the execution         */
         fclose(logPtr);
-        exit (0);
+        return 0;
     }
 
  //Child
-    else{
-        sem_wait (mutex);           /* P operation */
-        fprintf(stderr,"  Child(%d) is in critical section.\n", x);
-        sprintf(clockptr->shmMsg, "%ld : The time is %d.%d", (long)getpid(), clockptr->sec, clockptr->millisec);
-        fprintf(stderr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
-        fprintf(logPtr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
-        fprintf(stderr, "Leaving critical!\n");
-        sleep (1);
-        sem_post (mutex);           /* V operation */
-        sem_unlink("ossSem");
-        exit (0);
+    else {
+        char *args[]={"./user", NULL};
+        if ((execvp(args[0], args)) == -1) {
+            perror(strcat(argv[0],": Error: Failed to execvp child program\n"));
+            exit(-1);
+        }    
     }
     
-    //while ((wpid = wait(&status)) > 0);
-    //fprintf(stderr, "All children waited for! \n");
-
     //Detaching from memory segment.
     if (shmdt(clockptr) == -1) {
         perror(strcat(argv[0],": Error: Failed shmdt detach"));
