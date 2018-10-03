@@ -209,14 +209,13 @@ int main(int argc, char *argv[]){
     if (childpid != 0){
         while (running < 3){
             sem_wait(mutex);
-            clockptr->nanoSec += 10000000;
+            clockptr->nanoSec += 100000;
             
             if (clockptr->nanoSec > ((int)1e9)) {
                 clockptr->sec += (clockptr->nanoSec/((int)1e9));
                 clockptr->nanoSec = (clockptr->nanoSec%((int)1e9));
             }
 
-            fprintf(stderr, "Clock - %d.%d", clockptr->sec, clockptr->nanoSec);
             if ((strcmp(clockptr->shmMsg, "")) != 0){
                 //fprintf(stderr, "Parent grabbing message!\n");
                 fprintf(logPtr, "OSS : %s : terminating at %d.%d\n", 
