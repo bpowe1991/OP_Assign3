@@ -196,8 +196,21 @@ int main(int argc, char *argv[]){
                         clockptr->shmMsg, clockptr->sec, clockptr->nanoSec);
                 sprintf(clockptr->shmMsg, "");
                 clockptr->child = 0;
+                wait(&clockptr->child);
+
+                //Forking child.
+                if ((childpid = fork()) < 0) {
+                    perror(strcat(argv[0],": Error: Failed to create child"));
+                }
+                else if (childpid == 0) {
+                    char *args[]={"./user", NULL};
+                    if ((execvp(args[0], args)) == -1) {
+                        perror(strcat(argv[0],": Error: Failed to execvp child program\n"));
+                        exit(-1);
+                    }    
+                }
+                
                 childCount++;
-                wait(&clockptr->child);   
             }
             sem_post(mutex);
         }
