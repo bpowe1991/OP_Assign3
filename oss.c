@@ -209,7 +209,7 @@ int main(int argc, char *argv[]){
     if (childpid != 0){
         while (running < 3){
             sem_wait(mutex);
-            clockptr->nanoSec += 100000;
+            clockptr->nanoSec += 1000;
             
             if (clockptr->nanoSec > ((int)1e9)) {
                 clockptr->sec += (clockptr->nanoSec/((int)1e9));
