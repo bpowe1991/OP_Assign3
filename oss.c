@@ -188,10 +188,6 @@ int main(int argc, char *argv[]){
 
     int x;
 
-    // for (x=0;x< 1000;x++){
-    //     clockptr->sec += 1;
-    // }
-
     //fork child processes
     for (x = 0; x < 3; x++){
         childpid = fork ();
@@ -217,7 +213,6 @@ int main(int argc, char *argv[]){
             }
 
             if ((strcmp(clockptr->shmMsg, "")) != 0){
-                //fprintf(stderr, "Parent grabbing message!\n");
                 fprintf(logPtr, "OSS : %s : terminating at %d.%d\n", 
                         clockptr->shmMsg, clockptr->sec, clockptr->nanoSec);
                 sprintf(clockptr->shmMsg, "");
@@ -228,25 +223,22 @@ int main(int argc, char *argv[]){
             sem_post(mutex);
         }
 
-        /* wait for all children to exit */
         while ((wpid = wait(&status)) > 0);
 
         fprintf (stderr, "\nParent: All children have exited.\n");
 
-        /* shared memory detach */
         shmdt (clockptr);
         shmctl (shmid, IPC_RMID, 0);
 
-        /* cleanup semaphores */  
+        
         sem_close(mutex);
         sem_unlink ("ossSem");   
-        /* unlink prevents the semaphore existing forever */
-        /* if a crash occurs during the execution         */
         fclose(logPtr);
+        
         return 0;
     }
 
- //Child
+    //Child
     else {
         char *args[]={"./user", NULL};
         if ((execvp(args[0], args)) == -1) {
