@@ -28,6 +28,7 @@ struct clock {
     int sec;
     int nanoSec;
     char shmMsg[50];
+    pid_t child;
 };
 
 int flag = 0;
@@ -187,12 +188,12 @@ int main(int argc, char *argv[]){
 
     int x;
 
-    for (x=0;x< 1000;x++){
-        clockptr->sec += 1;
-    }
+    // for (x=0;x< 1000;x++){
+    //     clockptr->sec += 1;
+    // }
 
     //fork child processes
-    for (x = 0; x < 10; x++){
+    for (x = 0; x < 3; x++){
         childpid = fork ();
         if (childpid < 0) {
             sem_close(mutex);  
@@ -206,21 +207,24 @@ int main(int argc, char *argv[]){
 
     //Parent
     if (childpid != 0){
-        while (running < 10){
+        while (running < 3){
             sem_wait(mutex);
-            clockptr->nanoSec += 100;
+            clockptr->nanoSec += 10000000;
             
             if (clockptr->nanoSec > ((int)1e9)) {
                 clockptr->sec += (clockptr->nanoSec/((int)1e9));
                 clockptr->nanoSec = (clockptr->nanoSec%((int)1e9));
             }
 
+            fprintf(stderr, "Clock - %d.%d", clockptr->sec, clockptr->nanoSec);
             if ((strcmp(clockptr->shmMsg, "")) != 0){
-                fprintf(stderr, "Parent grabbing message!\n");
+                //fprintf(stderr, "Parent grabbing message!\n");
                 fprintf(logPtr, "OSS : %s : terminating at %d.%d\n", 
                         clockptr->shmMsg, clockptr->sec, clockptr->nanoSec);
                 sprintf(clockptr->shmMsg, "");
-                running++;   
+                clockptr->child = 0;
+                running++;
+                wait(&clockptr->child);   
             }
             sem_post(mutex);
         }

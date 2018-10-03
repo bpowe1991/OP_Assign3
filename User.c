@@ -29,6 +29,7 @@ struct clock {
     int sec;
     int nanoSec;
     char shmMsg[50];
+    pid_t child;
 };
 
 struct clock *clockptr;
@@ -65,25 +66,28 @@ int main(int argc, char *argv[]){
     randInt = (rand() % (1000000)) + 1;
     deadlineNanoSec += randInt;
 
-    if (clockptr->nanoSec > ((int)1e9)) {
+    if (deadlineNanoSec > ((int)1e9)) {
         deadlineSec += (deadlineNanoSec/((int)1e9));
         deadlineNanoSec = (deadlineNanoSec%((int)1e9));
     }
 
+    fprintf(stderr, "Child %ld - %d.%d\n", (long)getpid(), deadlineSec, deadlineNanoSec);
+
     do {
         sem_wait (mutex);           /* P operation */
-        fprintf(stderr,"    Child(%ld) is in critical section.\n", (long)getpid());
+        //fprintf(stderr,"    Child(%ld) is in critical section.\n", (long)getpid());
         if ((clockptr->sec > deadlineSec) || 
             (clockptr->sec == deadlineSec && clockptr->nanoSec >= deadlineNanoSec)){
             if ((strcmp(clockptr->shmMsg, "")) == 0){
                 sprintf(clockptr->shmMsg, "Child %ld : %d.%d time reached", 
                         (long)getpid(), clockptr->sec, clockptr->nanoSec);
-                fprintf(stderr, "   Leaving critical!\n");
+                clockptr->child = getpid();
+                //fprintf(stderr, "   Leaving critical!\n");
                 sem_post(mutex);
                 break;
             }
         }
-        fprintf(stderr, "   Leaving critical!\n");
+        //fprintf(stderr, "   Leaving critical!\n");
         sem_post (mutex);           /* V operation */
     } while(1);
 
