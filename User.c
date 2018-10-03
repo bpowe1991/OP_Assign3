@@ -17,6 +17,7 @@ values in shared memory and deallocates the shared memory segment.
 #include <unistd.h>
 #include <ctype.h>
 #include <sys/types.h>
+#include <time.h>
 #include <sys/wait.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h> 
@@ -26,7 +27,7 @@ values in shared memory and deallocates the shared memory segment.
 //Structure to be used in shared memory.
 struct clock {
     int sec;
-    int millisec;
+    int nanoSec;
     char shmMsg[50];
 };
 
@@ -36,9 +37,11 @@ void sigQuitHandler(int);
 
 int main(int argc, char *argv[]){ 
     signal(SIGQUIT, sigQuitHandler);
-    int shmid, i;
+    int shmid, deadlineSec, deadlineNanoSec, randInt;
     key_t key = 3670400;
     sem_t *mutex;
+
+    srand(time(0));
 
     //Finding shared memory segment.
     if ((shmid = shmget(key, sizeof(struct clock), 0666|IPC_CREAT)) < 0) {
@@ -57,15 +60,28 @@ int main(int argc, char *argv[]){
         exit(-1);    
     } 
     
+    deadlineSec = clockptr->sec;
+    deadlineNanoSec = clockptr->nanoSec;
+    randInt = (rand() % (1000000)) + 1;
+    deadlineNanoSec += randInt;
+
+    if (clockptr->nanoSec > ((int)1e9)) {
+        deadlineSec += (deadlineNanoSec/((int)1e9));
+        deadlineNanoSec = (deadlineNanoSec%((int)1e9));
+    }
+
     do {
         sem_wait (mutex);           /* P operation */
         fprintf(stderr,"    Child(%ld) is in critical section.\n", (long)getpid());
-        if ((strcmp(clockptr->shmMsg, "")) == 0){
-            sprintf(clockptr->shmMsg, "Child %ld : %d.%d time reached", 
-                    (long)getpid(), clockptr->sec, clockptr->millisec);
-            fprintf(stderr, "   Leaving critical!\n");
-            sem_post(mutex);
-            break;
+        if ((clockptr->sec > deadlineSec) || 
+            (clockptr->sec == deadlineSec && clockptr->nanoSec >= deadlineNanoSec)){
+            if ((strcmp(clockptr->shmMsg, "")) == 0){
+                sprintf(clockptr->shmMsg, "Child %ld : %d.%d time reached", 
+                        (long)getpid(), clockptr->sec, clockptr->nanoSec);
+                fprintf(stderr, "   Leaving critical!\n");
+                sem_post(mutex);
+                break;
+            }
         }
         fprintf(stderr, "   Leaving critical!\n");
         sem_post (mutex);           /* V operation */

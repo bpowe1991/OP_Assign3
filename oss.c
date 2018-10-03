@@ -26,7 +26,7 @@ values in shared memory and deallocates the shared memory segment.
 //Structure to be used in shared memory.
 struct clock {
     int sec;
-    int millisec;
+    int nanoSec;
     char shmMsg[50];
 };
 
@@ -208,17 +208,17 @@ int main(int argc, char *argv[]){
     if (childpid != 0){
         while (running < 10){
             sem_wait(mutex);
-            clockptr->millisec += 100;
+            clockptr->nanoSec += 100;
             
-            if (clockptr->millisec > 999) {
-                clockptr->sec += (clockptr->millisec/1000);
-                clockptr->millisec = (clockptr->millisec%1000);
+            if (clockptr->nanoSec > ((int)1e9)) {
+                clockptr->sec += (clockptr->nanoSec/((int)1e9));
+                clockptr->nanoSec = (clockptr->nanoSec%((int)1e9));
             }
 
             if ((strcmp(clockptr->shmMsg, "")) != 0){
                 fprintf(stderr, "Parent grabbing message!\n");
                 fprintf(logPtr, "OSS : %s : terminating at %d.%d\n", 
-                        clockptr->shmMsg, clockptr->sec, clockptr->millisec);
+                        clockptr->shmMsg, clockptr->sec, clockptr->nanoSec);
                 sprintf(clockptr->shmMsg, "");
                 running++;   
             }
