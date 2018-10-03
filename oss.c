@@ -191,29 +191,34 @@ int main(int argc, char *argv[]){
         clockptr->sec += 1;
     }
 
-    /* fork child processes */
-    for (x = 0; x < 3; x++){
+    //fork child processes
+    for (x = 0; x < 10; x++){
         childpid = fork ();
         if (childpid < 0) {
-        /* check for error      */
             sem_close(mutex);  
             sem_unlink ("ossSem");   
-            /* unlink prevents the semaphore existing forever */
-            /* if a crash occurs during the execution         */
-            printf ("Fork error.\n");
+            perror(strcat(argv[0],": Error: Failed fork"));
         }
         else if (childpid == 0)
-            break;                  /* child processes */
+            break;
     }
 
 
     //Parent
     if (childpid != 0){
-        while (running < 3){
+        while (running < 10){
             sem_wait(mutex);
+            clockptr->millisec += 100;
+            
+            if (clockptr->millisec > 999) {
+                clockptr->sec += (clockptr->millisec/1000);
+                clockptr->millisec = (clockptr->millisec%1000);
+            }
+
             if ((strcmp(clockptr->shmMsg, "")) != 0){
                 fprintf(stderr, "Parent grabbing message!\n");
-                fprintf(logPtr, "%s\n", clockptr->shmMsg);
+                fprintf(logPtr, "OSS : %s : terminating at %d.%d\n", 
+                        clockptr->shmMsg, clockptr->sec, clockptr->millisec);
                 sprintf(clockptr->shmMsg, "");
                 running++;   
             }

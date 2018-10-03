@@ -59,14 +59,15 @@ int main(int argc, char *argv[]){
     
     do {
         sem_wait (mutex);           /* P operation */
-        fprintf(stderr,"  Child(%ld) is in critical section.\n", (long)getpid());
+        fprintf(stderr,"    Child(%ld) is in critical section.\n", (long)getpid());
         if ((strcmp(clockptr->shmMsg, "")) == 0){
-            sprintf(clockptr->shmMsg, "%ld : The time is %d.%d", (long)getpid(), clockptr->sec, clockptr->millisec);
+            sprintf(clockptr->shmMsg, "Child %ld : %d.%d time reached", 
+                    (long)getpid(), clockptr->sec, clockptr->millisec);
+            fprintf(stderr, "   Leaving critical!\n");
             sem_post(mutex);
             break;
         }
-        fprintf(stderr, "Clock: %d.%d \nMessage: %s\n", clockptr->sec, clockptr->millisec, clockptr->shmMsg);
-        fprintf(stderr, "Leaving critical!\n");
+        fprintf(stderr, "   Leaving critical!\n");
         sem_post (mutex);           /* V operation */
     } while(1);
 
