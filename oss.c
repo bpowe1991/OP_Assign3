@@ -181,17 +181,18 @@ int main(int argc, char *argv[]){
     }
 
 
-    //Parent
+    //Parent main loop.
     if (childpid != 0){
         childCount = s;
-        while (childCount <= 15 && clockptr->sec <= 2 && flag == 0){
+        while (childCount <= 100 && clockptr->sec <= 2 && flag == 0){
             sem_wait(mutex);
-            clockptr->nanoSec += 10000;
+            clockptr->nanoSec += 100;
             if (clockptr->nanoSec > ((int)1e9)) {
                 clockptr->sec += (clockptr->nanoSec/((int)1e9));
                 clockptr->nanoSec = (clockptr->nanoSec%((int)1e9));
             }
 
+            //Checking shmMsg buffer.
             if ((strcmp(clockptr->shmMsg, "")) != 0){
                 fprintf(logPtr, "OSS : %s : terminating at %d.%d\n", 
                         clockptr->shmMsg, clockptr->sec, clockptr->nanoSec);
@@ -199,8 +200,9 @@ int main(int argc, char *argv[]){
                 clockptr->child = 0;
                 wait(&clockptr->child);
 
-                if (childCount < 15){
-                    //Forking child.
+                if (childCount < 100){
+                    
+                    //Forking child after wait.
                     if ((childpid = fork()) < 0) {
                         perror(strcat(argv[0],": Error: Failed to create child"));
                     }
@@ -217,10 +219,10 @@ int main(int argc, char *argv[]){
                 
             }
             sem_post(mutex);
-            fprintf(stderr, "Child count - %d\n", childCount);
         }
 
-        if (childCount < 15){
+        //Setting off flag if loop is terminated before max children is reached.
+        if (childCount < 100){
             flag = 1;
         }
 
@@ -231,9 +233,6 @@ int main(int argc, char *argv[]){
                 exit(-1);
             }
         }
-        
-        while ((wpid = wait(&status)) > 0);
-        fprintf (stderr, "\nParent: All children have exited.\n");
 
         //Detaching from memory segment.
         if (shmdt(clockptr) == -1) {
@@ -248,7 +247,7 @@ int main(int argc, char *argv[]){
             exit(-1);
         }
 
-        
+        //Disconnecting and removing semaphore.
         sem_close(mutex);
         sem_unlink ("ossSem");   
         fclose(logPtr);
@@ -264,26 +263,8 @@ int main(int argc, char *argv[]){
             exit(-1);
         }    
     }
-    
-    //Detaching from memory segment.
-    if (shmdt(clockptr) == -1) {
-        perror(strcat(argv[0],": Error: Failed shmdt detach"));
-        clockptr = NULL;
-        exit(-1);
-    }
-
-    //Removing memory segment.
-    if (shmctl(shmid, IPC_RMID, 0) == -1) {
-        perror(strcat(argv[0],": Error: Failed shmctl delete"));
-        exit(-1);
-    }
-    
-    sem_unlink ("ossSem");   
-    sem_close(mutex);
-    fclose(logPtr);
-
-    return 0;     
 }
+
 //Function to check whether string is a positive integer
 int is_pos_int(char test_string[]){
 	int is_num = 0;

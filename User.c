@@ -61,6 +61,7 @@ int main(int argc, char *argv[]){
         exit(-1);    
     } 
     
+    //Creating termination time.
     deadlineSec = clockptr->sec;
     deadlineNanoSec = clockptr->nanoSec;
     randInt = (rand() % (1000000)) + 1;
@@ -71,8 +72,7 @@ int main(int argc, char *argv[]){
         deadlineNanoSec = (deadlineNanoSec%((int)1e9));
     }
 
-    //fprintf(stderr, "Child %ld - %d.%d\n", (long)getpid(), deadlineSec, deadlineNanoSec);
-
+    //Entering child critical section.
     do {
         sem_wait (mutex);          
         if ((clockptr->sec > deadlineSec) || 
