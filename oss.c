@@ -51,6 +51,7 @@ int main(int argc, char *argv[]){
 	pid_t childpid = 0, wpid;
     FILE *logPtr;
     sem_t *mutex;
+    parent = getpid();
 
     //Parsing options.
     while((opt = getopt(argc, argv, "s:t:l:hp")) != -1){
@@ -147,7 +148,7 @@ int main(int argc, char *argv[]){
       exit(-1);             
    }
 
-    //alarm(t);
+    alarm(t);
     
     //Creating shared memory segment.
     if ((shmid = shmget(key, sizeof(struct clock), 0666|IPC_CREAT)) < 0) {
@@ -182,10 +183,9 @@ int main(int argc, char *argv[]){
 
     //Parent
     if (childpid != 0){
-        while (childCount < 100){
+        while (childCount <= 100 && flag == 0 && clockptr->sec < 2){
             sem_wait(mutex);
-            clockptr->nanoSec += 1000;
-            
+            clockptr->nanoSec += 10000;
             if (clockptr->nanoSec > ((int)1e9)) {
                 clockptr->sec += (clockptr->nanoSec/((int)1e9));
                 clockptr->nanoSec = (clockptr->nanoSec%((int)1e9));
@@ -198,24 +198,38 @@ int main(int argc, char *argv[]){
                 clockptr->child = 0;
                 wait(&clockptr->child);
 
-                //Forking child.
-                if ((childpid = fork()) < 0) {
-                    perror(strcat(argv[0],": Error: Failed to create child"));
+                if (childCount < 100){
+                    //Forking child.
+                    if ((childpid = fork()) < 0) {
+                        perror(strcat(argv[0],": Error: Failed to create child"));
+                    }
+                    else if (childpid == 0) {
+                        char *args[]={"./user", NULL};
+                        if ((execvp(args[0], args)) == -1) {
+                            perror(strcat(argv[0],": Error: Failed to execvp child program\n"));
+                            exit(-1);
+                        }    
+                    }
                 }
-                else if (childpid == 0) {
-                    char *args[]={"./user", NULL};
-                    if ((execvp(args[0], args)) == -1) {
-                        perror(strcat(argv[0],": Error: Failed to execvp child program\n"));
-                        exit(-1);
-                    }    
-                }
-                
+
                 childCount++;
             }
             sem_post(mutex);
         }
 
-        while ((wpid = wait(&status)) > 0);
+       // while ((wpid = wait(&status)) > 0);
+
+        if (clockptr->sec >= 2){
+            flag = 1;
+        }
+
+        //Sending signal to all children
+        if (flag == 1) {
+            if (kill(-parent, SIGQUIT) == -1) {
+                perror(strcat(argv[0],": Error: Failed kill"));
+                exit(-1);
+            }
+        }
 
         fprintf (stderr, "\nParent: All children have exited.\n");
 

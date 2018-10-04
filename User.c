@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
         deadlineNanoSec = (deadlineNanoSec%((int)1e9));
     }
 
-    fprintf(stderr, "Child %ld - %d.%d\n", (long)getpid(), deadlineSec, deadlineNanoSec);
+    //fprintf(stderr, "Child %ld - %d.%d\n", (long)getpid(), deadlineSec, deadlineNanoSec);
 
     do {
         sem_wait (mutex);          
