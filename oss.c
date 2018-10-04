@@ -66,8 +66,9 @@ int main(int argc, char *argv[]){
 				}
 				else{
                     s = atoi(optarg);
-                    if (s <= 0) {
-                        fprintf(stderr, "%s: Error: Entered illegal input for option -s\n", argv[0]);
+                    if (s <= 0 || s > 100) {
+                        fprintf(stderr, "%s: Error: Entered illegal input for option -s :"\
+                                " s needs to be 1-100\n", argv[0]);
                         exit(-1);
                     }
 				}
@@ -220,7 +221,7 @@ int main(int argc, char *argv[]){
                 }
             }
             sem_post(mutex);
-            
+
         } while (clockptr->sec <= 2 && flag == 0 && writtenTo < 100);
 
         //Setting off flag if loop is terminated before max children is reached.
