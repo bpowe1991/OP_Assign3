@@ -184,7 +184,7 @@ int main(int argc, char *argv[]){
     //Parent
     if (childpid != 0){
         childCount = s;
-        while (childCount < 100){
+        while (childCount <= 15 && clockptr->sec <= 2 && flag == 0){
             sem_wait(mutex);
             clockptr->nanoSec += 10000;
             if (clockptr->nanoSec > ((int)1e9)) {
@@ -199,7 +199,7 @@ int main(int argc, char *argv[]){
                 clockptr->child = 0;
                 wait(&clockptr->child);
 
-                if (childCount < 100){
+                if (childCount < 15){
                     //Forking child.
                     if ((childpid = fork()) < 0) {
                         perror(strcat(argv[0],": Error: Failed to create child"));
@@ -211,16 +211,18 @@ int main(int argc, char *argv[]){
                             exit(-1);
                         }    
                     }
+                
+                    childCount++;
                 }
-
-                childCount++;
+                
             }
             sem_post(mutex);
             fprintf(stderr, "Child count - %d\n", childCount);
         }
 
-        while ((wpid = wait(&status)) > 0);
-
+        if (childCount < 15){
+            flag = 1;
+        }
 
         //Sending signal to all children
         if (flag == 1) {
@@ -229,7 +231,8 @@ int main(int argc, char *argv[]){
                 exit(-1);
             }
         }
-
+        
+        while ((wpid = wait(&status)) > 0);
         fprintf (stderr, "\nParent: All children have exited.\n");
 
         //Detaching from memory segment.
