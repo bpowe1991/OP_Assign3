@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
     
     struct clock *clockptr;
     char filename[20] = "log.txt";
-    int opt, s = 5, t = 2, shmid, status = 0, count = 0, childCount = 0;
+    int opt, s = 5, t = 2, shmid, status = 0, count = 0, childCount = 0, writtenTo = 0;
     key_t key = 3670400;
 	pid_t childpid = 0, wpid;
     FILE *logPtr;
@@ -184,7 +184,8 @@ int main(int argc, char *argv[]){
     //Parent main loop.
     if (childpid != 0){
         childCount = s;
-        while (childCount <= 100 && clockptr->sec <= 2 && flag == 0){
+
+        do {
             sem_wait(mutex);
             clockptr->nanoSec += 100;
             if (clockptr->nanoSec > ((int)1e9)) {
@@ -199,6 +200,7 @@ int main(int argc, char *argv[]){
                 sprintf(clockptr->shmMsg, "");
                 clockptr->child = 0;
                 wait(&clockptr->child);
+                writtenTo++;
 
                 if (childCount < 100){
                     
@@ -213,13 +215,13 @@ int main(int argc, char *argv[]){
                             exit(-1);
                         }    
                     }
-                
+
                     childCount++;
                 }
-                
             }
             sem_post(mutex);
-        }
+            
+        } while (clockptr->sec <= 2 && flag == 0 && writtenTo < 100);
 
         //Setting off flag if loop is terminated before max children is reached.
         if (childCount < 100){
