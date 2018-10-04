@@ -183,7 +183,8 @@ int main(int argc, char *argv[]){
 
     //Parent
     if (childpid != 0){
-        while (childCount <= 100 && flag == 0 && clockptr->sec < 2){
+        childCount = s;
+        while (childCount < 100){
             sem_wait(mutex);
             clockptr->nanoSec += 10000;
             if (clockptr->nanoSec > ((int)1e9)) {
@@ -215,13 +216,11 @@ int main(int argc, char *argv[]){
                 childCount++;
             }
             sem_post(mutex);
+            fprintf(stderr, "Child count - %d\n", childCount);
         }
 
-       // while ((wpid = wait(&status)) > 0);
+        while ((wpid = wait(&status)) > 0);
 
-        if (clockptr->sec >= 2){
-            flag = 1;
-        }
 
         //Sending signal to all children
         if (flag == 1) {
